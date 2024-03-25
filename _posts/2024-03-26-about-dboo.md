@@ -1,8 +1,8 @@
 ---
 layout: post
-title: About dboo
+title: about dboo
+date: 2024-03-26 01:01 +0900
 ---
-
 # 우리 집 막내쓰 **두부**
 
 - **출생연도** : 2018년 10월생으로 벌써 6살 먹은 중년 말티즈
