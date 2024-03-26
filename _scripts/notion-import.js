@@ -12,9 +12,7 @@ const notion = new Client({
 });
 
 function escapeCodeBlock(body) {
-  const regex = /```
-([\s\S]*?)
-```/g
+  const regex = /```([\s\S]*?)```/g;
   return body.replace(regex, function(match, htmlBlock) {
     return // raw 관련 이슈로 하단의 Repository 확인 부탁드립니다.
   })
