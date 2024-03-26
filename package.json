@@ -33,7 +33,13 @@
     "rollup": "^4.13.0",
     "rollup-plugin-license": "^3.3.1",
     "stylelint": "^16.2.1",
-    "stylelint-config-standard-scss": "^13.0.0"
+    "stylelint-config-standard-scss": "^13.0.0",
+    "@notionhq/client": "^1.0.4",
+    "@types/node-fetch": "^2.6.2",
+    "moment": "^2.29.2",
+    "node-fetch": "^2.6.7",
+    "notion-to-md": "^2.5.5",
+    "axios": "^1.4.0"
   },
   "prettier": {
     "trailingComma": "none"
