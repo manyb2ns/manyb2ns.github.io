@@ -68,10 +68,10 @@ const n2m = new NotionToMarkdown({ notionClient: notion });
     // categories
     let cats = [];
     // let pcats = r.properties?.["카테고리"]?.["multi_select"];
-    let pcats = r.properties?.["카테고리"];
+    let pcats = r.properties?.["카테고리"]?.rich_text;
     console.log(pcats)
     for (const t of pcats) {
-      const n = t?.["name"];
+      const n = t?.["plain_text"];
       if (n) {
         cats.push(n);
       }
