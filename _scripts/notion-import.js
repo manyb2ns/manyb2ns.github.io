@@ -38,8 +38,6 @@ const n2m = new NotionToMarkdown({ notionClient: notion });
     },
   });
 
-  console.log(response.results)
-
   for (const r of response.results) {
     // console.log(r)
     const id = r.id;
@@ -69,7 +67,6 @@ const n2m = new NotionToMarkdown({ notionClient: notion });
     let cats = [];
     // let pcats = r.properties?.["카테고리"]?.["multi_select"];
     let pcats = r.properties?.["카테고리"]?.rich_text;
-    console.log(pcats)
     for (const t of pcats) {
       const n = t?.["plain_text"];
       if (n) {
@@ -103,6 +100,10 @@ title: "${title}"${fmtags}${fmcats}
 `;
     const mdblocks = await n2m.pageToMarkdown(id);
     let md = n2m.toMarkdownString(mdblocks)["parent"];
+
+    console.log("mdblocks: "+mdblocks)
+    console.log("md: "+md)
+
     md = escapeCodeBlock(md);
 
     const ftitle = `${date}-${title.replaceAll(" ", "-")}.md`;
