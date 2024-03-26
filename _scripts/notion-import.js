@@ -12,7 +12,7 @@ const notion = new Client({
 });
 
 function escapeCodeBlock(body) {
-  const regex = /```([\s\S]*?)```/g;
+  const regex = /```([\s\S]*?)```/g
   return body.replace(regex, function(match, htmlBlock) {
     return // raw 관련 이슈로 하단의 Repository 확인 부탁드립니다.
   })
@@ -37,7 +37,6 @@ const n2m = new NotionToMarkdown({ notionClient: notion });
       },
     },
   });
-
   for (const r of response.results) {
     // console.log(r)
     const id = r.id;
@@ -56,7 +55,6 @@ const n2m = new NotionToMarkdown({ notionClient: notion });
     // tags
     let tags = [];
     let ptags = r.properties?.["태그"]?.["multi_select"];
-    console.log(ptags)
     for (const t of ptags) {
       const n = t?.["name"];
       if (n) {
@@ -65,10 +63,9 @@ const n2m = new NotionToMarkdown({ notionClient: notion });
     }
     // categories
     let cats = [];
-    // let pcats = r.properties?.["카테고리"]?.["multi_select"];
-    let pcats = r.properties?.["카테고리"]?.rich_text;
+    let pcats = r.properties?.["카테고리"]?.["multi_select"];
     for (const t of pcats) {
-      const n = t?.["plain_text"];
+      const n = t?.["name"];
       if (n) {
         cats.push(n);
       }
@@ -98,13 +95,8 @@ title: "${title}"${fmtags}${fmcats}
 ---
 
 `;
-
-    console.log("id: "+id)
-    console.log("n2m: "+n2m)
-
-    const mdblocks = await n2m.pageToMarkdown(id); // NULL
-    let md = n2m.toMarkdownString(mdblocks)["parent"];  // undefined
-
+    const mdblocks = await n2m.pageToMarkdown(id);
+    let md = n2m.toMarkdownString(mdblocks)["parent"];
     md = escapeCodeBlock(md);
 
     const ftitle = `${date}-${title.replaceAll(" ", "-")}.md`;
