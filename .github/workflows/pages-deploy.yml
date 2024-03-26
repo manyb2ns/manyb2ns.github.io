@@ -62,6 +62,8 @@ jobs:
           commit_user_name: importer-bot 🤖
           commit_user_email: actions@github.com
           commit_author: importer-bot 🤖 <actions@github.com>
+        run: |
+            echo "::set-output name=changes_detected::true"
 
   build:
     runs-on: ubuntu-latest
