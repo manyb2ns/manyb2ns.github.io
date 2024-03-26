@@ -13,11 +13,9 @@ const notion = new Client({
 
 function escapeCodeBlock(body) {
   const regex = /```([\s\S]*?)```/g
-  if(body) {
-    return body.replace(regex, function(match, htmlBlock) {
-      return // raw 관련 이슈로 하단의 Repository 확인 부탁드립니다.
-    })
-  }
+  return body.replace(regex, function(match, htmlBlock) {
+    return "{% raw %}\n```" + htmlBlock + "```\n{% endraw %}"
+  })
 }
 
 // passing notion client to the option
@@ -130,7 +128,7 @@ title: "${title}"${fmtags}${fmcats}
         if (p1 === "") res = "";
         else res = `_${p1}_`;
 
-        return // 정규표현식 이슈로 아래 하단의 Repository 확인 부탁드립니다.
+        return `![${index++}](/${filename})${res}`;
       }
     );
 
