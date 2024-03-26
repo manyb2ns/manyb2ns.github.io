@@ -98,11 +98,12 @@ title: "${title}"${fmtags}${fmcats}
 ---
 
 `;
-    const mdblocks = await n2m.pageToMarkdown(id);
-    let md = n2m.toMarkdownString(mdblocks)["parent"];
 
-    console.log("mdblocks: "+mdblocks)
-    console.log("md: "+md)
+    console.log("id: "+id)
+    console.log("n2m: "+n2m)
+
+    const mdblocks = await n2m.pageToMarkdown(id); // NULL
+    let md = n2m.toMarkdownString(mdblocks)["parent"];  // undefined
 
     md = escapeCodeBlock(md);
 
