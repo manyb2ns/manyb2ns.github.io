@@ -53,6 +53,8 @@ jobs:
           NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
           DATABASE_ID: ${{ secrets.DATABASE_ID }}
 
+      - run: echo "::set-output name=changes_detected::true"
+
       - uses: stefanzweifel/git-auto-commit-action@v4
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -62,8 +64,6 @@ jobs:
           commit_user_name: importer-bot 🤖
           commit_user_email: actions@github.com
           commit_author: importer-bot 🤖 <actions@github.com>
-        run: |
-            echo "::set-output name=changes_detected::true"
 
   build:
     runs-on: ubuntu-latest
