@@ -2,9 +2,9 @@
 layout: post
 title: about dboo
 categories:
-- test01
+- dboo
 tags:
-- test_tag
+- dboo
 date: 2024-03-26 14:35 +0900
 ---
 # 우리 집 막내쓰 **두부**
