@@ -95,12 +95,15 @@ title: "${title}"${fmtags}${fmcats}
 ---
 
 `;
-    const mdblocks = await n2m.pageToMarkdown(id);
-    console.log("n2m: "+n2m)
-    console.log("id: "+id)
-    console.log('n2m.pageToMarkdown(id): '+n2m.pageToMarkdown(id))
-    console.log("mdblocks: "+mdblocks)
-    console.log('n2m.toMarkdownString(mdblocks)["parent"]: '+n2m.toMarkdownString(mdblocks)["parent"])
+
+    console.log("n2m: "+n2m)  // [object Object]
+    console.log("id: "+id)  // ********-****-****-****-************
+    console.log('n2m.pageToMarkdown(id): '+n2m.pageToMarkdown(id))  // [object Promise]
+    console.log("mdblocks: "+await n2m.pageToMarkdown(id)) // null
+    console.log('n2m.toMarkdownString(mdblocks)["parent"]: '+n2m.toMarkdownString(mdblocks)["parent"])  // undefined
+
+    // const mdblocks = await n2m.pageToMarkdown(id);  // null
+    const mdblocks = n2m.pageToMarkdown(id);  // null
     let md = n2m.toMarkdownString(mdblocks)["parent"];  // undefined
     md = escapeCodeBlock(md);
 
