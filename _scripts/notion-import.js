@@ -103,12 +103,14 @@ title: "${title}"${fmtags}${fmcats}
     const mdblocks = await n2m.pageToMarkdown(id);
 
     console.log("n2m: ",n2m)  // n2m_value 파일 참고
-    console.log("n2m pages: ",n2m["pages"])
+    console.log("n2m pages: ",n2m["pages"]) // undefined
     console.log('n2m.pageToMarkdown(id): ',n2m.pageToMarkdown(id))  // [object Promise] --->  Promise { <pending> }
     console.log('n2m.toMarkdownString(mdblocks)["parent"]: ',n2m.toMarkdownString(mdblocks)["parent"])  // undefined
     console.log("mdblocks: ",mdblocks)  // []
+    console.log("n2m.toMarkdownString(mdblocks)",n2m.toMarkdownString(mdblocks))
 
-    let md = n2m.toMarkdownString(mdblocks)["parent"];  // undefined
+    // let md = n2m.toMarkdownString(mdblocks)["parent"];  // undefined
+    let md = n2m.toMarkdownString(mdblocks)["pages"];
     md = escapeCodeBlock(md);
 
     const ftitle = `${date}-${title.replaceAll(" ", "-")}.md`;
