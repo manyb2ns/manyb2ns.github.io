@@ -102,8 +102,18 @@ title: "${title}"${fmtags}${fmcats}
     console.log("mdblocks: "+await n2m.pageToMarkdown(id)) // null
     console.log('n2m.toMarkdownString(mdblocks)["parent"]: '+n2m.toMarkdownString(mdblocks)["parent"])  // undefined
 
-    // const mdblocks = await n2m.pageToMarkdown(id);  // null
-    const mdblocks = n2m.pageToMarkdown(id);  // null
+    const mdblocks = await n2m.pageToMarkdown(id);  // null
+    // const mdblocks = n2m.pageToMarkdown(id); ---> ReferenceError: Cannot access 'mdblocks' before initialization
+
+    // promise 확인
+    n2m.pageToMarkdown(id)
+    .then(result => {
+      console.log('n2m.pageToMarkdown(id):', result);
+    })
+    .catch(error => {
+      console.error('Error occurred:', error);
+    });  
+
     let md = n2m.toMarkdownString(mdblocks)["parent"];  // undefined
     md = escapeCodeBlock(md);
 
