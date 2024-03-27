@@ -13,7 +13,6 @@ const notion = new Client({
 
 function escapeCodeBlock(body) {
   const regex = /```([\s\S]*?)```/g
-  console.log(body)
   return body.replace(regex, function(match, htmlBlock) {
     return "{% raw %}\n```" + htmlBlock + "```\n{% endraw %}"
   })
@@ -97,7 +96,12 @@ title: "${title}"${fmtags}${fmcats}
 
 `;
     const mdblocks = await n2m.pageToMarkdown(id);
-    let md = n2m.toMarkdownString(mdblocks)["parent"];
+    console.log("n2m: "+n2m)
+    console.log("id: "+id)
+    console.log('n2m.pageToMarkdown(id): '+n2m.pageToMarkdown(id))
+    console.log("mdblocks: "+mdblocks)
+    console.log('n2m.toMarkdownString(mdblocks)["parent"]: '+n2m.toMarkdownString(mdblocks)["parent"])
+    let md = n2m.toMarkdownString(mdblocks)["parent"];  // undefined
     md = escapeCodeBlock(md);
 
     const ftitle = `${date}-${title.replaceAll(" ", "-")}.md`;
