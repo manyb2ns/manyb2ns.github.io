@@ -1,11 +1,11 @@
 const { Client } = require("@notionhq/client");
-// const { NotionToMarkdown } = require("notion-to-md");
+const { NotionToMarkdown } = require("notion-to-md");
 const moment = require("moment");
 const path = require("path");
 const fs = require("fs");
 const axios = require("axios");
 // or
-import {NotionToMarkdown} from "notion-to-md";
+// import {NotionToMarkdown} from "notion-to-md";
 
 const notion = new Client({
   auth: process.env.NOTION_TOKEN,
@@ -103,6 +103,7 @@ title: "${title}"${fmtags}${fmcats}
     const mdblocks = await n2m.pageToMarkdown(id);
 
     console.log("n2m: ",n2m)  // n2m_value 파일 참고
+    console.log("n2m pages: ",n2m["pages"])
     console.log('n2m.pageToMarkdown(id): ',n2m.pageToMarkdown(id))  // [object Promise] --->  Promise { <pending> }
     console.log('n2m.toMarkdownString(mdblocks)["parent"]: ',n2m.toMarkdownString(mdblocks)["parent"])  // undefined
     console.log("mdblocks: ",mdblocks)  // []
