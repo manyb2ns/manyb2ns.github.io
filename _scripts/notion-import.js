@@ -37,6 +37,9 @@ const n2m = new NotionToMarkdown({ notionClient: notion });
       },
     },
   });
+
+  console.log(response)
+
   for (const r of response.results) {
     // console.log(r)
     const id = r.id;
@@ -96,15 +99,13 @@ title: "${title}"${fmtags}${fmcats}
 
 `;
 
-    console.log("n2m: ",n2m)  // [object Object]
-    console.log("id: ",id)  // ********-****-****-****-************
-    console.log('n2m.pageToMarkdown(id): ',n2m.pageToMarkdown(id))  // [object Promise]
-    console.log("mdblocks: ",await n2m.pageToMarkdown(id)) // null
-    console.log('n2m.toMarkdownString(mdblocks)["parent"]: ',n2m.toMarkdownString(mdblocks)["parent"])  // undefined
-
     // const mdblocks = n2m.pageToMarkdown(id); ---> ReferenceError: Cannot access 'mdblocks' before initialization 
     const mdblocks = await n2m.pageToMarkdown(id);
-    console.log("mdblocks: ",mdblocks)
+
+    console.log("n2m: ",n2m)  // n2m_value 파일 참고
+    console.log('n2m.pageToMarkdown(id): ',n2m.pageToMarkdown(id))  // [object Promise] --->  Promise { <pending> }
+    console.log('n2m.toMarkdownString(mdblocks)["parent"]: ',n2m.toMarkdownString(mdblocks)["parent"])  // undefined
+    console.log("mdblocks: ",mdblocks)  // []
 
     let md = n2m.toMarkdownString(mdblocks)["parent"];  // undefined
     md = escapeCodeBlock(md);
