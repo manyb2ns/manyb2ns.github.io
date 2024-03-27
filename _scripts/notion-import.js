@@ -106,7 +106,7 @@ title: "${title}"${fmtags}${fmcats}
 
     const mdblocks = await n2m.pageToMarkdown(id); 
     // let md = n2m.toMarkdownString(mdblocks)["parent"];
-    const md = await n2m.toMarkdownString(mdblocks)["parent"];
+    const md = await n2m.toMarkdownString(mdblocks);
     escaped_md = escapeCodeBlock(md);
 
     // mdblocks ---> []
