@@ -14,7 +14,7 @@ const notion = new Client({
 function escapeCodeBlock(body) {
   console.log("body: ",body)
   const regex = /```([\s\S]*?)```/g
-  return body.replace(regex, function(match, htmlBlock) { // TypeError: Cannot read properties of undefined (reading 'replace')
+  return body.replace(regex, function(match, htmlBlock) { 
     return "{% raw %}\n```" + htmlBlock + "```\n{% endraw %}"
   })
 }
@@ -102,8 +102,8 @@ title: "${title}"${fmtags}${fmcats}
 `;
 
     const mdblocks = await n2m.pageToMarkdown(id); 
-    // let md = n2m.toMarkdownString(mdblocks)["parent"];
-    const md = await n2m.toMarkdownString(mdblocks);
+    let md = n2m.toMarkdownString(mdblocks)["parent"];
+    // const md = await n2m.toMarkdownString(mdblocks);
     escaped_md = escapeCodeBlock(md);
 
     // mdblocks ---> []
