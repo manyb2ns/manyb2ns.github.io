@@ -13,9 +13,6 @@ const notion = new Client({
 
 function escapeCodeBlock(body) {
   console.log("body: ",body)
-  console.log("body.replace(): ",body.replace(regex, function(match, htmlBlock) {
-    return "{% raw %}\n```" + htmlBlock + "```\n{% endraw %}"
-  }))
   const regex = /```([\s\S]*?)```/g
   return body.replace(regex, function(match, htmlBlock) { // TypeError: Cannot read properties of undefined (reading 'replace')
     return "{% raw %}\n```" + htmlBlock + "```\n{% endraw %}"
