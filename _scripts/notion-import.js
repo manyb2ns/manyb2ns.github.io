@@ -12,7 +12,6 @@ const notion = new Client({
 });
 
 function escapeCodeBlock(body) {
-  console.log("body: ",body)
   const regex = /```([\s\S]*?)```/g
   return body.replace(regex, function(match, htmlBlock) { 
     return "{% raw %}\n```" + htmlBlock + "```\n{% endraw %}"
@@ -39,12 +38,8 @@ const n2m = new NotionToMarkdown({ notionClient: notion });
     },
   });
 
-  console.log("response: ",response)
-
   for (const r of response.results) {
-    // console.log(r)
     const id = r.id;
-    console.log("id: ", id)
     // date
     let date = moment(r.created_time).format("YYYY-MM-DD");
     let pdate = r.properties?.["날짜"]?.["date"]?.["start"];
@@ -103,18 +98,12 @@ title: "${title}"${fmtags}${fmcats}
 
     const mdblocks = await n2m.pageToMarkdown(id); 
     let md = n2m.toMarkdownString(mdblocks)["parent"];
-    // const md = await n2m.toMarkdownString(mdblocks);
-    escaped_md = escapeCodeBlock(md);
-
-    // mdblocks ---> []
-    // n2m.pageToMarkdown(id) ---> Promise { <pending> }
-    // n2m.toMarkdownString(mdblocks) ---> undefined
-    // md ---> undefined
+    md = escapeCodeBlock(md);
 
     const ftitle = `${date}-${title.replaceAll(" ", "-")}.md`;
 
     let index = 0;
-    let edited_md = escaped_md.replace(
+    let edited_md = md.replace(
       /!\[(.*?)\]\((.*?)\)/g,
       function (match, p1, p2, p3) {
         const dirname = path.join("assets/img", ftitle);
