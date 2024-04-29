@@ -16,7 +16,7 @@ timezone: Asia/Seoul
 
 title: manyb2ns # the main title
 
-tagline: 테스트중입니다만 # it will display as the sub-title
+tagline: 보초 # it will display as the sub-title
 
 description: >- # used by seo meta and the atom feed
   A minimal, responsive and feature-rich Jekyll theme for technical writing.
@@ -174,7 +174,9 @@ defaults:
   - scope:
       path: _drafts
     values:
-      comments: false
+      category: "default"
+      tag: "draft"
+      comments: true # default=false
   - scope:
       path: ""
       type: tabs # see `site.collections`
