@@ -1,9 +1,7 @@
 ---
 layout: post
 title: test post
-date: 2024-05-02 15:39 +0900
 ---
-
 aks
 cert-manager
 lets encrypt
